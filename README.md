@@ -8,6 +8,7 @@
 - [x] Actually set up a database (vercel postgres)
 - [x] Attach database to UI
 - [x] Add Authentication (w/ clerk)
+- [ ] Fix server taint
 - [ ] Add image upload
 - [ ] Error Management(w/ Sentry)
 - [ ] Routing/image page (parallel route)

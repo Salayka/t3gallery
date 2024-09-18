@@ -2,6 +2,7 @@ import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
 import { db } from "~/server/db";
 import { getMyImages } from "~/server/queries";
+import Image from 'next/image';
 
 export const dynamic = "force-dynamic";
 
@@ -12,7 +13,13 @@ async function Images() {
         {
           images.map((image) => (
             <div key={image.id} className = "flex flex-col w-48">
-              <img src={image.url} alt="image" />
+              <Image 
+                src={image.url} 
+                style={{objectFit : "contain" }}
+                height={480}
+                width={480}
+                alt={image.name} 
+              />
               <div>{image.name}</div>
             </div>
           ))

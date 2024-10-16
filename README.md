@@ -12,7 +12,7 @@
 - [x] Fix server taint
 - [x] Use Next/Image component
 - [x] Error Management(w/ Sentry)
-- [ ] Routing/image page (parallel route)
+- [x] Routing/image page (parallel route)
 - [ ] Delete Button (w/ server actions)
 - [ ] analytics (posthog)
 - [ ] ratelimiting (upstash)

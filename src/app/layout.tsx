@@ -35,7 +35,7 @@ export default function RootLayout({
         />
 
         <body className="">
-          <div className = "h-screen grid grid-rows-[auto, 1fr]">
+          <div className = "grid h-screen grid-rows-[auto, 1fr]">
             <TopNav />
             <main className="overflow-y-scroll">{children}</main>
           </div>

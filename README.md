@@ -18,3 +18,10 @@
 - [x] analytics (posthog)
 - [x] Delete Button (w/ server actions)
 - [x] ratelimiting (upstash)
+
+## Challenges
+1. infinite scroll, fetch more data on scroll
+2. Folders/albums ->new database model 
+3. Fix the layout for images of different resolutions ->normalize them to a standard size
+4. "Selecting" images on the gallery page, checkmarks in state zustand
+

@@ -1,0 +1,1 @@
+ALTER TABLE "t3gallery_image" DROP COLUMN IF EXISTS "albumId";

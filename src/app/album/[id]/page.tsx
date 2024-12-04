@@ -1,13 +1,13 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
 import { db } from "~/server/db";
-import { getMyImages } from "~/server/queries";
+import { getMyImages, getMyImagesByAlbum } from "~/server/queries";
 import Image from "next/image";
 
 export const dynamic = "force-dynamic";
 
-async function Images() {
-  const images = await getMyImages();
+async function AlbumImages(props: { id: number }) {
+  const images = await getMyImagesByAlbum(props.id);
   return (
     <div className="flex flex-wrap justify-center gap-4 p-4">
       {images.map((image) => (
@@ -31,14 +31,19 @@ async function Images() {
   );
 }
 
-export default async function HomePage() {
+export default async function AlbumnImagePage({
+  params: { id: albumId },
+}: {
+  params: { id: string };
+}) {
+  const albumIdAsNumber = Number(albumId);
   return (
     <main className="">
       <SignedOut>
         <div className="h-full w-full text-center text-2xl">Pretty Please Sign in</div>
       </SignedOut>
       <SignedIn>
-        <Images />
+        <AlbumImages id={albumIdAsNumber} />
       </SignedIn>
     </main>
   );

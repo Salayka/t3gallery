@@ -1,0 +1,1 @@
+ALTER TABLE "t3gallery_image" ADD COLUMN "albumId" varchar(256);

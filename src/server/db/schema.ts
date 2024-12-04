@@ -1,9 +1,10 @@
 // Example model schema from the Drizzle docs
 // https://orm.drizzle.team/docs/sql-schema-declaration
 
-import { sql } from "drizzle-orm";
+import { sql, relations } from "drizzle-orm";
 import {
   index,
+  integer,
   pgTableCreator,
   serial,
   timestamp,
@@ -24,6 +25,7 @@ export const images = createTable(
     id: serial("id").primaryKey(),
     name: varchar("name", { length: 256 }).notNull(),
     url: varchar("url", { length: 1024 }).notNull(),
+    albumId: integer("album_id").references(() => albums.id),
     userId: varchar("userId", { length: 256 }).notNull(),
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
@@ -34,5 +36,30 @@ export const images = createTable(
   },
   (example) => ({
     nameIndex: index("name_idx").on(example.name),
+    albumIndex: index("album_idx").on(example.albumId)
   }),
 );
+export const albums = createTable(
+  "album",
+  {
+    id: serial("id").primaryKey(),
+    name: varchar("name", { length: 256 }).notNull(),
+    userId: varchar("userId", { length: 256 }).notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .default(sql`CURRENT_TIMESTAMP`)
+      .notNull(),
+  },
+  (example) => ({
+    albumNameIndex: index("album_name_idx").on(example.name),
+  }),
+);
+
+export const albumsRelations = relations(albums, ({ many }) => ({
+  images: many(images),
+}));
+export const imagesRelations = relations(images, ({ one }) => ({
+  album: one(albums, {
+    fields: [images.albumId],
+    references: [albums.id],
+  }),
+}));

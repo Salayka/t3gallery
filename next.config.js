@@ -7,7 +7,13 @@ await import("./src/env.js");
 /** @type {import("next").NextConfig} */
 const coreConfig = {
   images: {
-    remotePatterns: [{ hostname: "utfs.io" }],
+    remotePatterns: [
+      {
+        hostname: "utfs.io"
+      },
+      {
+        hostname: "uxzbucs43q.ufs.sh"
+      }],
   },
   typescript: {
     ignoreBuildErrors: true,
@@ -32,7 +38,7 @@ const coreConfig = {
     ];
   },
   // This is required to support PostHog trailing slash API requests
-  skipTrailingSlashRedirect: true, 
+  skipTrailingSlashRedirect: true,
 };
 import { withSentryConfig } from "@sentry/nextjs";
 
